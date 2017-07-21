@@ -15,11 +15,11 @@ libraryDependencies ++= Seq (
   "com.itextpdf"             %  "itextpdf"      % "5.5.11",
   "com.github.wookietreiber" %% "scala-chart"   % "0.5.1",
   "com.github.nscala-time"   %% "nscala-time"   % "2.16.0",
-  "co.fs2"                   %% "fs2-core"      % "0.9.6",
-  "co.fs2"                   %% "fs2-io"        % "0.9.6",
+  "co.fs2"                   %% "fs2-core"      % "0.9.7",
+  "co.fs2"                   %% "fs2-io"        % "0.9.7",
   "co.fs2"                   %% "fs2-cats"      % "0.3.0",
-  "com.github.scopt"         %% "scopt"         % "3.5.0",
-  "org.specs2"               %% "specs2-core"   % "3.8.9" % "test"
+  "com.github.scopt"         %% "scopt"         % "3.6.0",
+  "org.specs2"               %% "specs2-core"   % "3.9.4" % "test"
 )
 
 initialCommands in Compile += """
@@ -57,7 +57,7 @@ scalastyleConfig := file(".scalastyle-config.xml")
 
 lazy val compileScalastyle = taskKey[Unit]("compileScalastyle")
 
-compileScalastyle := org.scalastyle.sbt.ScalastylePlugin.scalastyle.in(Compile).toTask("").value
+compileScalastyle := org.scalastyle.sbt.ScalastylePlugin.autoImport.scalastyle.in(Compile).toTask("").value
 
 (compile in Compile) := ((compile in Compile) dependsOn compileScalastyle).value
 
