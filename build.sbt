@@ -1,5 +1,6 @@
 enablePlugins(BuildInfoPlugin)
 enablePlugins(GitVersioning)
+disablePlugins(ScalafmtSbtPlugin)
 
 name := "pretty-accounting"
 
@@ -60,6 +61,14 @@ lazy val compileScalastyle = taskKey[Unit]("compileScalastyle")
 compileScalastyle := org.scalastyle.sbt.ScalastylePlugin.autoImport.scalastyle.in(Compile).toTask("").value
 
 (compile in Compile) := ((compile in Compile) dependsOn compileScalastyle).value
+
+// -------------------------------------------------------------------------------------------------
+// scalafmt integration
+// -------------------------------------------------------------------------------------------------
+
+scalafmtVersion in ThisBuild := "1.1.0"
+
+scalafmtOnCompile in ThisBuild := true
 
 // -------------------------------------------------------------------------------------------------
 // scripts / install
